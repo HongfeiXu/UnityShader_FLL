@@ -17,7 +17,7 @@
 
 **用假颜色对Unity Shader进行调试，并且使用颜色拾取器来查看调试信息**
 
-![](images/FalseColor+ColorPicker.png)
+![](Images/FalseColor+ColorPicker.png)
 
 > Chapter5-FalseColor.shader <br>
 > ColorPicker.cs
@@ -26,7 +26,7 @@
 
 **逐顶点漫反射光照、逐像素漫反射光照、半兰伯特光照的对比效果**
 
-![](images/Diffuse.png)
+![](Images/Diffuse.png)
 
 > Chapter6-DiffuseVertexLevel.shader <br>
 > Chapter6-DiffusePixelLevel.shader <br>
@@ -35,7 +35,7 @@
 
 **逐顶点的高光反射光照、逐像素的高光反射光照（Phong光照模型）和Blinn-Phong高光反射光照的对比结果**
 
-![](images/Diffuse+Specular.png)
+![](Images/Diffuse+Specular.png)
 
 > Chapter6-SpecularVertexLevel.shader <br>
 > Chapter6-SpecularPixelLevel.shader <br>
