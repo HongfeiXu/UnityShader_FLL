@@ -1,4 +1,7 @@
-﻿Shader "Unity Shaders Book/Chapter5/False Color" {
+﻿/*
+	使用假彩色图像可视化一些模型数据，比如法线、切线、纹理坐标等
+*/
+Shader "Unity Shaders Book/Chapter5/False Color" {
 	SubShader{
 		Pass{
 			CGPROGRAM

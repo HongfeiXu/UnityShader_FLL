@@ -44,6 +44,7 @@ Shader "Unity Shaders Book/Chapter6/Diffuse Vertex-Level" {
 				fixed3 worldNormal = UnityObjectToWorldNormal(v.normal);
 				// Get the light direction in world space
 				fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
+
 				// Compute diffuse term
 				fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * saturate(dot(worldNormal, worldLight));
 

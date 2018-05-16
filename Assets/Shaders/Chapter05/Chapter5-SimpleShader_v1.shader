@@ -1,4 +1,7 @@
-﻿Shader "Unity Shaders Book/Chapter5/Simple Shader v1" {
+﻿/*
+	假彩色图像的方式可视化模型的法线
+*/
+Shader "Unity Shaders Book/Chapter5/Simple Shader v1" {
 	Properties{
 		// 声明一个 Color 类型的属性
 		_Color("Color Tint", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -40,8 +43,7 @@
 				v2f o;
 				
 				// 模型空间->裁剪空间
-				//o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-				o.pos = UnityObjectToClipPos(v.vertex);		// 与上面语句相同效果
+				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 
 				// v.normal 包含了顶点的法线方向，其分量范围在[-1.0, 1.0]
 				// 下面的代码把分量范围映射到了[0.0, 1.0]
@@ -60,4 +62,5 @@
 			ENDCG
 		}
 	}
+	FallBack "Diffuse"
 }
