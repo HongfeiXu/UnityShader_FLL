@@ -68,7 +68,7 @@ Shader "Unity Shaders Book/Chapter7/Single Texture"
 				// Use the texture to sample the diffuse color
 				fixed3 albedo = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
 
-				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz/* * albedo*/;
+				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 
 				fixed3 diffuse = _LightColor0.rgb * albedo * saturate(dot(worldNormal, worldLightDir));
 

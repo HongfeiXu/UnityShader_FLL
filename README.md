@@ -46,7 +46,7 @@
 
 #### 7.1 单张纹理
 
-用一张纹理来替代物体的漫反射颜色，使用 Blinn-Phong光照模型计算光照。
+**用一张纹理来替代物体的漫反射颜色，使用 Blinn-Phong光照模型计算光照。**
 
 **[TODO] Add Images**
 
@@ -55,7 +55,7 @@
 
 
 
-纹理的属性：Tilling & Offset，Wrap Mode，Mipmap，Filter Mode，等。
+**纹理的属性：Tilling & Offset，Wrap Mode，Mipmap，Filter Mode，等。**
 
 **[TODO] Add Images**
 
@@ -98,6 +98,21 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/RampTextureIssue.png)
 
 #### 7.4 遮罩纹理
+
+使用高光遮罩纹理，逐像素地控制模型表面的高光反射强度。
+
+
+
+![](Images/MaskTexture.png)
+
+![](Images/MaskTextureSettings.png)
+
+
+
+**小Tips**：主纹理、法线纹理和遮罩纹理共同使用一个纹理属性变量 `_Main_Tex_ST`，这样，在材质面板中修改主纹理的平铺和偏移系数会同时影响3个纹理的采样（起到同步的作用），并且可以节省存储的纹理目标数。
+
+> Chapter7-MaskTexture.shader <br>
+> Chapter7-MaskTexture_v2.shader
 
 
 
