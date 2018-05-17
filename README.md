@@ -41,3 +41,65 @@
 > Chapter6-SpecularPixelLevel.shader <br>
 > Chapter6-BlinnPhong.shader <br>
 > Chapter6-BlinnPhongUseBuildInFunction.shader（与上面的相同效果）
+
+### 第 7 章 基础纹理
+
+#### 7.1 单张纹理
+
+用一张纹理来替代物体的漫反射颜色，使用 Blinn-Phong光照模型计算光照。
+
+**[TODO] Add Images**
+
+> Chapter7-SingleTexture.shader <br>
+> Scene_7_1.unity
+
+
+
+纹理的属性：Tilling & Offset，Wrap Mode，Mipmap，Filter Mode，等。
+
+**[TODO] Add Images**
+
+> Chapter7-TextureProperties.shader <br>
+> Scene_7_1_2_a.unity <br>
+> Scene_7_1_2_b.unity <br>
+> Scene_7_1_2_c.unity
+
+#### 7.2 凹凸映射
+
+凹凸映射主要可以通过两种方式来实现：高度纹理，法线纹理。
+
+法线纹理中存储的法线方向在哪个坐标空间中？可以是：模型空间的法线纹理，切线空间的法线纹理。
+
+需要在计算光照模型中统一各个方向矢量所在的坐标空间。可以是：切线空间下的光照计算，世界空间下的光照计算。
+
+**使用 Bump Scale 属性来调整模型的凹凸程度**
+
+![](Images/NormalMap.png)
+
+>Chapter7-NormalMapTangentSpace.shader
+
+#### 7.3 渐变纹理 
+
+**使用渐变纹理控制物体的漫反射光照**
+
+![](Images/RampTexture.png)
+
+```c++
+// 漫反射颜色的计算（使用半兰伯特模型计算的值构建纹理坐标对渐变纹理进行采样）
+fixed halfLambert = dot(worldNormal, lightDir) * 0.5 + 0.5;
+fixed3 diffuseColor = tex2D(_RampTex, fixed2(halfLambert, halfLambert)).rgb * _Color.rgb;
+fixed3 diffuse = _LightColor0.rgb * diffuseColor;
+```
+
+> Chapter7-RampTexture.shader
+
+有个疑问，计算 ambient 时，需不需要乘上 diffuseColor。因为 **7.1 单张纹理** 中有 `fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo; `。很疑惑。。。
+
+![](Images/RampTextureIssue.png)
+
+#### 7.4 遮罩纹理
+
+
+
+
+

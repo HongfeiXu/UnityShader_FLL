@@ -46,7 +46,7 @@ Shader "Unity Shaders Book/Chapter6/Blinn-Phong"
 				// Transform the normal from object space to world space
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 				// Transform teh normal from object space to world space
-				o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
 				return o;
 			}

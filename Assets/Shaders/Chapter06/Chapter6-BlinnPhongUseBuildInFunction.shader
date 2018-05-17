@@ -1,7 +1,7 @@
 ﻿/*
 	Blinn-Phong 光照模型，使用Unity内置函数
 */
-Shader "Unity Shaders Book/Chapter6/Blinn-Phong Use Build-In Function"
+Shader "Unity Shaders Book/Chapter6/Blinn-Phong Use Build-in Function"
 {
 	Properties
 	{
