@@ -38,6 +38,7 @@ Shader "Unity Shaders Book/Chapter6/Diffuse Vertex-Level" {
 
 				// Get ambient term
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
+			//	fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * _Diffuse.rgb;	// 也可以这样计算 ambient, 与书中不同，可以参考 issue129
 
 				// Transform the normal from object space to world space
 				//fixed3 worldNormal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));

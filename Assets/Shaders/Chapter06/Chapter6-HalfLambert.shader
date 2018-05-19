@@ -7,12 +7,12 @@ Shader "Unity Shaders Book/Chapter6/Half Lambert"
 	{
 		_Diffuse("Diffuse", Color) = (1.0, 1.0, 1.0, 1.0)
 	}
-		SubShader
+	SubShader
 	{
-		Tags { "LightMode" = "ForwardBase" }
-
 		Pass
 		{
+			Tags { "LightMode" = "ForwardBase" }
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag

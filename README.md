@@ -93,7 +93,9 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 > Chapter7-RampTexture.shader
 
-有个疑问，计算 ambient 时，需不需要乘上 diffuseColor。因为 **7.1 单张纹理** 中有 `fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo; `。很疑惑。。。
+有个疑问，计算 ambient 时，需不需要乘上 diffuseColor。因为 **7.1 单张纹理** 中有 `fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo; `。很疑惑。。。（已经在I[ssue224](https://github.com/candycat1992/Unity_Shaders_Book/issues/224)中提问并解答。）
+
+这两种都不是物理精确的，我个人感觉完全按自己喜好选择就好。哈哈。
 
 ![](Images/RampTextureIssue.png)
 
@@ -113,6 +115,63 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 > Chapter7-MaskTexture.shader <br>
 > Chapter7-MaskTexture_v2.shader
+
+
+
+注：可以在这个[链接](http://www.dota2.com/workshop/requirements/)找到《DOTA2》的制作资料。可以看到遮罩纹理的使用。
+
+### 第 8 章 透明效果
+
+#### 8.1 为什么渲染顺序很重要
+
+透明混合技术中，需要关闭深度写入。这会破坏深度缓冲的工作机制。**那么为什么要这样做呢？**
+
+> Ref: https://github.com/candycat1992/Unity_Shaders_Book/issues/22
+
+![](Images/ZWrite.png)
+
+如果你打开了zwrite，透明和透明物体之间就会出现问题。试想两个透明物体A和B，A在前B在后，那么必须是B先渲染A后渲染才会得到正确的结果。但问题是，你无法保证所有的透明物体之间都由完全正确的排序关系，**如果A和B互相遮挡**，那么无论谁先绘制都会发现有一部分是只有一个物体的颜色，而没有发生混合。
+
+当前的半透明解决方法是保证在不透明物体后面、并按从前往后顺序、关闭zwrite，这种方法当然也不是万能的，例如上面说到的A和B互相遮挡下也会出现问题，但出现的错误是“混合错误”，而不是“完全没有进行混合”。**而且关闭了zwrite可以保证一定不会妨碍不透明物体的渲染**，这是非常重要的，即便游戏引擎没有保证先绘制不透明物体，半透明也不会影响游戏里不透明物体的渲染。我认为这是优先级最高的需求。
+
+#### 8.2 Unity Shader 的渲染顺序
+
+#### 8.3 透明度测试
+
+![](Images/AlphaTest.png)
+
+#### 8.4 透明度混合
+
+![](Images/AlphaBlend.png)
+
+#### 8.5 开启深度写入的半透明效果
+
+![](Images/AlphaBlendZWrite.png)
+
+#### 8.6 ShaderLab 的混合命令
+
+> 图片出处：http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html
+
+![](Images/blend.png)
+
+#### 8.7 双面渲染的透明效果
+
+**透明度测试的双面渲染**
+
+![](Images/AlphaTestBothSided.png)
+
+**透明度混合的双面渲染**
+
+![](Images/AlphaBlendBothSided.png)
+
+#### 疑问
+
+如何对复杂模型（非凸网格等）进行双面透明渲染？
+
+在书的第8.7节给出了一个透明度混合的双面渲染的实现，方法是在关闭深度写入的前提下，用两个Pass来分别渲染模型的背面和正面。
+上面这种方法可以很好地解决那些模型本身没有遮挡关系的情况。可是一旦模型出现了遮挡，比如书中的Knot模型，依然是会出现混合错误的问题，而且这里显然不能通过进行提前深度测试的方式来解决，因为那样的话，一定是渲染不出背面的（实验结果如下图）。不知道有没有好的解决方法？
+
+![](Images/KnotBothSided.png)
 
 
 

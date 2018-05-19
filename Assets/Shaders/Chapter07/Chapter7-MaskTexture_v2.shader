@@ -18,10 +18,10 @@ Shader "Unity Shaders Book/Chapter7/Mask Texture v2"
 	}
 	SubShader
 	{
-		Tags { "LightMode" = "ForwardBase" }
-
 		Pass
 		{
+			Tags{ "LightMode" = "ForwardBase" }
+
 			CGPROGRAM
 
 			#pragma vertex vert

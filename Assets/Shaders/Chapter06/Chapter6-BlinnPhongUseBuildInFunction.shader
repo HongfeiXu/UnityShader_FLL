@@ -11,10 +11,10 @@ Shader "Unity Shaders Book/Chapter6/Blinn-Phong Use Build-in Function"
 	}
 	SubShader
 	{
-		Tags { "LightMode" = "ForwardBase" }
-
 		Pass
 		{
+			Tags { "LightMode" = "ForwardBase" }
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
