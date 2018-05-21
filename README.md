@@ -48,7 +48,9 @@
 
 **用一张纹理来替代物体的漫反射颜色，使用 Blinn-Phong光照模型计算光照。**
 
-**[TODO] Add Images**
+
+
+![](Images/SingleTexture.png)
 
 > Chapter7-SingleTexture.shader <br>
 > Scene_7_1.unity
@@ -57,7 +59,29 @@
 
 **纹理的属性：Tilling & Offset，Wrap Mode，Mipmap，Filter Mode，等。**
 
-**[TODO] Add Images**
+![](Images/WrapMode.png)
+
+<center>Wrap Mode决定了当纹理坐标超过[0, 1]范围后将会如何被平铺  </center>
+
+
+
+![](Images/WrapMode_2.png)
+
+<center>偏移属性决定了纹理坐标的偏移量</center>
+
+
+
+![](Images/FilterMode.png)
+
+<center>在放大纹理是，分别使用3种Filter Mode得到的结果</center>
+
+
+
+![](Images/FilterMode_2.png)
+
+<center>FilterMode+mipmapping</center>
+
+
 
 > Chapter7-TextureProperties.shader <br>
 > Scene_7_1_2_a.unity <br>
@@ -103,8 +127,6 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 使用高光遮罩纹理，逐像素地控制模型表面的高光反射强度。
 
-
-
 ![](Images/MaskTexture.png)
 
 ![](Images/MaskTextureSettings.png)
@@ -115,8 +137,6 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 > Chapter7-MaskTexture.shader <br>
 > Chapter7-MaskTexture_v2.shader
-
-
 
 注：可以在这个[链接](http://www.dota2.com/workshop/requirements/)找到《DOTA2》的制作资料。可以看到遮罩纹理的使用。
 
@@ -140,13 +160,19 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 ![](Images/AlphaTest.png)
 
+> Chapter8-AlphaTest.shader
+
 #### 8.4 透明度混合
 
 ![](Images/AlphaBlend.png)
 
+> Chapter8-AlphaBlend.shader
+
 #### 8.5 开启深度写入的半透明效果
 
 ![](Images/AlphaBlendZWrite.png)
+
+> Chapter8-ALphaBlendZWrite.shader
 
 #### 8.6 ShaderLab 的混合命令
 
@@ -154,15 +180,22 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 ![](Images/blend.png)
 
+> Chapter8-BlendOperations 0.shader<br>
+> Chapter8-BlendOperations 1.shader
+
 #### 8.7 双面渲染的透明效果
 
 **透明度测试的双面渲染**
 
 ![](Images/AlphaTestBothSided.png)
 
+> Chapter8-AlphaTestBothSided.shader
+
 **透明度混合的双面渲染**
 
 ![](Images/AlphaBlendBothSided.png)
+
+> Chapter8-AlphaBlendBothSided.shader
 
 #### 疑问
 

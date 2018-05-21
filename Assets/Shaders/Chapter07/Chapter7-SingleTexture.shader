@@ -1,5 +1,6 @@
 ﻿/*
 	单张纹理，使用纹理代替物体的漫反射颜色
+	光照模型为Blinn-Phong光照模型
 */
 Shader "Unity Shaders Book/Chapter7/Single Texture"
 {
