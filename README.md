@@ -61,25 +61,25 @@
 
 ![](Images/WrapMode.png)
 
-<center>Wrap Mode决定了当纹理坐标超过[0, 1]范围后将会如何被平铺  </center>
+<p align="center">Wrap Mode决定了当纹理坐标超过[0, 1]范围后将会如何被平铺</p> 
 
 
 
 ![](Images/WrapMode_2.png)
 
-<center>偏移属性决定了纹理坐标的偏移量</center>
+<p align="center">偏移属性决定了纹理坐标的偏移量</p> 
 
 
 
 ![](Images/FilterMode.png)
 
-<center>在放大纹理是，分别使用3种Filter Mode得到的结果</center>
+<p align="center">在放大纹理是，分别使用3种Filter Mode得到的结果</p> 
 
 
 
 ![](Images/FilterMode_2.png)
 
-<center>FilterMode+mipmapping</center>
+<p align="center">FilterMode+mipmapping</p> 
 
 
 
