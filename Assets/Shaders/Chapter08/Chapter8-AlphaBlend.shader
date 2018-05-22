@@ -20,7 +20,7 @@ Shader "Unity Shaders Book/Chapter 8/Alpha Blend"
 
 		Pass
 		{
-			Tags {"LightMode" = "ForwardBase"}
+			Tags{ "LightMode" = "ForwardBase" }
 
 			// 关闭深度写入
 			ZWrite Off

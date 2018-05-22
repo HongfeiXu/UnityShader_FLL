@@ -61,7 +61,7 @@ Shader "Unity Shaders Book/Chapter6/Blinn-Phong"
 				fixed3 worldNormal = normalize(i.worldNormal);
 
 				// Compute diffuse term
-				fixed3 diffuse = _LightColor0.rgb * _Diffuse * saturate(dot(worldNormal, worldLight));
+				fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * saturate(dot(worldNormal, worldLight));
 				
 				// Get the view direction in world space
 				fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
