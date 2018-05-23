@@ -4,7 +4,7 @@
 	纹理（为了更清楚的看到混合效果，这里去掉了光照模型）
 */
 
-Shader "Unity Shaders Book/Chapter 8/Blend Operations 0"
+Shader "Unity Shaders Book/Chapter8/Blend Operations 1"
 {
 	Properties
 	{

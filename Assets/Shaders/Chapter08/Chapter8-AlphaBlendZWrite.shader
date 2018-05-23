@@ -8,7 +8,7 @@
 	第二个 Pass 进行正常的透明度混合，由于上一个 Pass 中
 */
 
-Shader "Unity Shaders Book/Chapter 8/Alpha Blend ZWrite"
+Shader "Unity Shaders Book/Chapter8/Alpha Blend ZWrite"
 {
 	Properties
 	{

@@ -6,7 +6,7 @@
 	这里使用了两个Pass，分别使用Cull指令剔除不同朝向的渲染单元
 */
 
-Shader "Unity Shaders Book/Chapter 8/Alpha Blend Both Sided"
+Shader "Unity Shaders Book/Chapter8/Alpha Blend Both Sided"
 {
 	Properties
 	{

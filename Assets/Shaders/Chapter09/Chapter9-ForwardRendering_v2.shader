@@ -19,7 +19,7 @@ Shader "Unity Shaders Book/Chapter9/Forward Rendering v2"
 	{
 		// Base Pass
 		// Pass for ambient light & first pixel light (directional light)
-		// TODO: 计算逐顶点和SH光源
+		// 并且计算计算逐顶点和SH光源的光照
 		Pass
 		{
 			Tags { "LightMode" = "ForwardBase" }

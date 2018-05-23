@@ -4,7 +4,7 @@
 	漫反射+纹理
 */
 
-Shader "Unity Shaders Book/Chapter 8/Alpha Test"
+Shader "Unity Shaders Book/Chapter8/Alpha Test"
 {
 	Properties
 	{
