@@ -310,3 +310,70 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 
 
+### 第 10 章 高级纹理
+
+#### 10.1 立方体纹理
+
+**天空盒子**
+
+![](Images/Skybox_2.png)
+
+<p align="center">天空盒子材质</p>
+
+![](Images/Skybox.png)
+
+<p align="center">使用了天空盒子的场景</p>
+
+**创建用于环境映射的立方体纹理**
+
+![](Images/Cubemap.png)
+
+<p align="center">使用脚本创建立方体纹理</p>
+
+![](Images/Cubemap_2.png)
+
+<p align="center">使用脚本渲染立方体纹理</p>
+
+**反射**
+
+![](Images/Reflect.png)
+
+<p align="center">使用了反射效果的 Teapot 模型</p>
+
+**折射**
+
+![](Images/Refract.png)
+
+**菲涅尔反射**
+
+![](Images/Fresnel.png)
+
+![](Images/Fresnel_2.png)
+
+当 FresnelScale 为 0 时，是一个具有边缘光照效果的漫反射物体；当 FresnelScale 为 1 时，物体将完全反射 Cubemap 中的图像。
+
+#### 10.2 渲染纹理
+
+**镜子效果**（在 Project 目录下创建一个渲染纹理，把某个摄像机的渲染目标设置成该渲染纹理）
+
+![](Images/Mirror.png)
+
+
+
+**玻璃效果**（GrabPass=>折射，Cubemap=>反射）
+
+![](Images/Glass.png)
+
+
+
+#### 10.3 程序纹理
+
+**在 Unity 中实现简单的程序纹理**
+
+![](Images/ProceduralTexture.png)
+
+![](Images/ProceduralTexture_2.png)
+
+**Unity 的程序材质**
+
+![](Images/ProceduralMaterialAsset.png)

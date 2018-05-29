@@ -96,7 +96,7 @@ Shader "Unity Shaders Book/Chapter9/Forward Rendering v2"
 				fixed atten = 1.0;
 
 				// 由于 o.sh 中已经包含了 ambient（详情，可以参考 Shade4PointLights 和 ShadeSHPerVertex 的代码），
-				// 所以这里不再加入 ambient，这与 issue 29 有出入（该issue中提出手动修改系统 ambient 强度来调整最终的环境光，但这回影响到其他材质）
+				// 所以这里不再加入 ambient，详见 issue 29
 				fixed3 color =(diffuse + specular) * atten;
 
 				#if UNITY_SHOULD_SAMPLE_SH
