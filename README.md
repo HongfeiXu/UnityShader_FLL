@@ -377,3 +377,16 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 **Unity 的程序材质**
 
 ![](Images/ProceduralMaterialAsset.png)
+
+
+
+### 乱序
+
+#### 边缘检测
+
+1. 用 Sobel 算子，直接利用颜色信息，对屏幕图像进行边缘检测，实现描边效果。
+2. 用 Roberts 算子，使用深度和法线信息，对屏幕图像进行边缘检测，实现描边效果。
+
+![](Images/OutLineColorBasedSobel.png)
+
+![](Images/OutlineDepthNormalBasedRoberts.png)
