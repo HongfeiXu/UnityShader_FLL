@@ -34,12 +34,12 @@ Shader "Unity Shaders Book/Chapter11-ImageSequenceAnimation" {
 
 			struct v2f {
 				float4 pos : SV_POSITION;
-				float2 uv : TEXCOORD2;
+				float2 uv : TEXCOORD0;
 			};
 
 			fixed4 _Color;
 			sampler2D _MainTex;
-			fixed4 _MainTex_ST;
+			float4 _MainTex_ST;
 			float _HorizontalAmount;
 			float _VerticalAmount;
 			float _Speed;
@@ -47,7 +47,8 @@ Shader "Unity Shaders Book/Chapter11-ImageSequenceAnimation" {
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex.xyz);
+
 				o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 				return o;
 			}
@@ -66,7 +67,7 @@ Shader "Unity Shaders Book/Chapter11-ImageSequenceAnimation" {
 				uv.y /= _VerticalAmount;
 
 				fixed4 c = tex2D(_MainTex, uv);
-				c.rgb = _Color;	// 强制设为白色
+				c.rgb *= _Color;	// 设置颜色
 
 				return c;
 			}
