@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	渐变纹理
 	使用渐变纹理控制物体的漫反射光照
 	注意：需要把渐变纹理的 Wrap Mode 设为 Clamp
@@ -45,7 +47,7 @@ Shader "Unity Shaders Book/Chapter7/Ramp Texture"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 

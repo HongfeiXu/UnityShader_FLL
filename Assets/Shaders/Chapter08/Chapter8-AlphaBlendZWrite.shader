@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	开启深度写入的透明度混合
 	逐片元着色
 	漫反射+纹理
@@ -68,7 +70,7 @@ Shader "Unity Shaders Book/Chapter8/Alpha Blend ZWrite"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				//o.worldNormal = UnityObjectToWorldNormal(v.normal);
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);

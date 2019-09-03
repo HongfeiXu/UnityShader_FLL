@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	测试纹理图片的属性
 	Wrap Mode
 	Filter Mode
@@ -42,7 +44,7 @@ Shader "Unity Shaders Book/Chapter7/Texture Properties"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// Transforms 2D UV by scale/bias property
 				//o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);

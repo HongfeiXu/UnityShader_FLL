@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	Blinn-Phong 光照模型
 */
 Shader "Unity Shaders Book/Chapter6/Blinn-Phong"
@@ -41,7 +43,7 @@ Shader "Unity Shaders Book/Chapter6/Blinn-Phong"
 			{
 				v2f o;
 				// Transform the vertex from object space to projection space
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// Transform the normal from object space to world space
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);

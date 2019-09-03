@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	遮罩纹理之
 	高光反射遮罩纹理
 	（在世界空间计算光照）
@@ -57,7 +59,7 @@ Shader "Unity Shaders Book/Chapter7/Mask Texture"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// 使用 o.uv 存储主纹理、法线纹理、遮罩纹理的纹理坐标
 				o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;

@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	切线空间的法线纹理之
 	在世界空间下进行光照计算
 
@@ -56,7 +58,7 @@ Shader "Unity Shaders Book/Chapter7/Normal Map In World Space"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// 使用 o.uv 存储两个纹理坐标
 				o.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;

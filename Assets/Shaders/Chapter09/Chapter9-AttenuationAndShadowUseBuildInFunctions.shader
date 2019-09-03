@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	统一管理光照衰减和阴影
 
 	使用 UNITY_LIGHT_ATTENUATION 来同时计算光照衰减因子和阴影值，得到两者的乘积
@@ -52,7 +54,7 @@ Shader "Unity Shaders Book/Chapter9/Attenuation And Shadow Use Build-in Function
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
@@ -131,7 +133,7 @@ Shader "Unity Shaders Book/Chapter9/Attenuation And Shadow Use Build-in Function
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;

@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	使用假彩色图像可视化一些模型数据，比如法线、切线、纹理坐标等
 */
 Shader "Unity Shaders Book/Chapter5/False Color" {
@@ -19,7 +21,7 @@ Shader "Unity Shaders Book/Chapter5/False Color" {
 			v2f vert(appdata_full v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				//// 可视化法线方向
 				o.color = fixed4(v.normal * 0.5 + fixed3(0.5, 0.5, 0.5), 1.0);

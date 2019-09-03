@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	菲涅尔反射，根据视角控制反射程度。
 */
 
@@ -46,7 +48,7 @@ Shader "Unity Shaders Book/Chapter10-Fresnel" {
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);

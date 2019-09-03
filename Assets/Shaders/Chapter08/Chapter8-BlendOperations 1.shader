@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	透明度混合之常见的混合类型
 	逐片元着色
 	纹理（为了更清楚的看到混合效果，这里去掉了光照模型）
@@ -83,7 +85,7 @@ Shader "Unity Shaders Book/Chapter8/Blend Operations 1"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 

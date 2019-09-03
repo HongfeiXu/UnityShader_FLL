@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	透明度物体的阴影之
 	透明度混合
 	虽然使用了阴影“三剑客”，但是半透明物体不会接收阴影
@@ -57,7 +59,7 @@ Shader "Unity Shaders Book/Chapter9/Alpha Blend With Shadow"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 

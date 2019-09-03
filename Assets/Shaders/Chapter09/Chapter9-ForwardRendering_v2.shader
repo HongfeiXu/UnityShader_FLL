@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	在前向渲染中处理不同的光源类型
 
 	使用 Blinn-Phong 光照模型
@@ -54,7 +56,7 @@ Shader "Unity Shaders Book/Chapter9/Forward Rendering v2"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
@@ -150,7 +152,7 @@ Shader "Unity Shaders Book/Chapter9/Forward Rendering v2"
 			{
 				v2f o;
 				// Transform the vertex from object space to projection space
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// Transform the normal from object space to world space
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);

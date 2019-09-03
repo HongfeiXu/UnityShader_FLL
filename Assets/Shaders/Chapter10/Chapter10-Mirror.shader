@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 
 	渲染纹理之镜子效果，使用 Render Texture 和额外摄像机模拟镜子
 
@@ -37,7 +39,7 @@ Shader "Unity Shaders Book/Chapter10/Mirror"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.uv = v.texcoord.xy;
 				// Mirror needs to flip x

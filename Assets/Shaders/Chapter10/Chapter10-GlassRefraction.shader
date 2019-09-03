@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 
 	渲染纹理之玻璃效果，
 	
@@ -67,7 +69,7 @@ Shader "Unity Shaders Book/Chapter10-GlassRefraction" {
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.scrPos = ComputeGrabScreenPos(o.pos);
 

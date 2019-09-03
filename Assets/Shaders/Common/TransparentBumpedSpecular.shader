@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 	本书使用的标准 Unity Shader 之 Transparent Bumped Specular
 	多光源 + 光照衰减 + 法线纹理（不支持阴影的投射和接收）
 	基于 Blinn-Phong 光照模型
@@ -69,7 +71,7 @@ Shader "Unity Shaders Book/Common/Transparent Bumped Specular"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// 使用 o.uv 存储主纹理、法线纹理的纹理坐标
 				o.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
@@ -176,7 +178,7 @@ Shader "Unity Shaders Book/Common/Transparent Bumped Specular"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				// 使用 o.uv 存储主纹理、法线纹理的纹理坐标
 				o.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;

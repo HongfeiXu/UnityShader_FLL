@@ -1,4 +1,6 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 
 基于 Chapter10-Reflection.shader，不同之处在于把 worldViewDir 和 worldRefl 的计算放在了片元着色器中，使得效果更佳细腻。
 但考虑到性能的消耗换区这种很小的提升，一般还是在顶点着色器中进行计算。
@@ -49,7 +51,7 @@ Shader "Unity Shaders Book/Chapter10-Reflection_v2" {
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
