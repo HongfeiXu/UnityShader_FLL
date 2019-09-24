@@ -2,7 +2,7 @@
 	顶点动画
 */
 
-Shader "Unity Shaders Book/Chapter11/Water" {
+Shader "Unity Shaders Book/Chapter11/VertexAnimationWithShadow" {
 	Properties
 	{
 		_MainTex("Main Tex", 2D) = "white"{}
@@ -15,15 +15,13 @@ Shader "Unity Shaders Book/Chapter11/Water" {
 	
 	SubShader
 	{
-		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" "DisableBatching"="True"}
+		Tags {"DisableBatching"="True"}
 
 		Pass
 		{
 			Tags {"LightMode"="ForwardBase"}
 
-			ZWrite Off
-			Blend SrcAlpha OneMinusSrcAlpha
-			Cull off
+			Cull Off
 
 			CGPROGRAM
 
@@ -74,6 +72,47 @@ Shader "Unity Shaders Book/Chapter11/Water" {
 
 			ENDCG
 		}
+
+		// Pass to render object as a shadow caster
+		Pass {
+			Tags { "LightMode" = "ShadowCaster" }
+			
+			CGPROGRAM
+			
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			#pragma multi_compile_shadowcaster
+			
+			#include "UnityCG.cginc"
+			
+			float _Magnitude;
+			float _Frequency;
+			float _InvWaveLength;
+			float _Speed;
+			
+			struct v2f { 
+			    V2F_SHADOW_CASTER;
+			};
+			
+			v2f vert(appdata_base v) {
+				v2f o;
+				
+				float4 offset;
+				offset.yzw = float3(0.0, 0.0, 0.0);
+				offset.x = sin(_Frequency * _Time.y + v.vertex.x * _InvWaveLength + v.vertex.y * _InvWaveLength + v.vertex.z * _InvWaveLength) * _Magnitude;
+				v.vertex = v.vertex + offset;
+
+				TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+				
+				return o;
+			}
+			
+			fixed4 frag(v2f i) : SV_Target {
+			    SHADOW_CASTER_FRAGMENT(i)
+			}
+			ENDCG
+		}
 	}
-	FallBack "Transparent/VertexLit"
+	FallBack "VertexLit"
 }
