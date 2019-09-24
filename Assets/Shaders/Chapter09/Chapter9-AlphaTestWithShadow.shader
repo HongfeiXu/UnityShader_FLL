@@ -78,7 +78,7 @@ Shader "Unity Shaders Book/Chapter9/Alpha Test With Shadow"
 				fixed4 texColor = tex2D(_MainTex, i.uv);
 
 				// Alpha Test
-				clip(texColor.a - _Cutoff);
+				clip(texColor.a - _Cutoff -0.1);
 				// Equal to
 				//if (texColor.a - _Cutoff < 0)
 				//	discard;

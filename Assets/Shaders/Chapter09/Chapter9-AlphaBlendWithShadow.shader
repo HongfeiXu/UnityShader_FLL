@@ -95,6 +95,6 @@ Shader "Unity Shaders Book/Chapter9/Alpha Blend With Shadow"
 			ENDCG
 		}
 	}
-	Fallback "Transparent/VertexLit"	// 半透明物体不会向下方的平面投射阴影
-	//Fallback "VertexLit"		// dirty trick，强制为半透明物体生成阴影
+	//Fallback "Transparent/VertexLit"	// 半透明物体不会向下方的平面投射阴影
+	Fallback "VertexLit"		// dirty trick，强制为半透明物体生成阴影
 }

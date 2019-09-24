@@ -11,7 +11,6 @@ Shader "Unity Shaders Book/Chapter7/Texture Properties"
 {
 	Properties
 	{
-
 		_MainTex("Main Tex", 2D) = "white"{}				// 纹理
 	}
 	SubShader
