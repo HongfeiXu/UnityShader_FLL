@@ -1,6 +1,5 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Unlit/Chapter12-Bloom"
+﻿
+Shader "Unity Shaders Book/Chapter12/Bloom"
 {
 	Properties
 	{

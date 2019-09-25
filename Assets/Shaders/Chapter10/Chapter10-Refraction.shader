@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Unity Shaders Book/Chapter10-Refraction" {
+Shader "Unity Shaders Book/Chapter10/Refraction" {
 	Properties{
 		_Color("Color Tint", Color) = (1, 1, 1, 1)
 		_RefractColor("Refraction Color", Color) = (1, 1, 1, 1)

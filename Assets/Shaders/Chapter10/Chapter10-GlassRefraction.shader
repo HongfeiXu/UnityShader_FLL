@@ -10,7 +10,7 @@
 
 */
 
-Shader "Unity Shaders Book/Chapter10-GlassRefraction" {
+Shader "Unity Shaders Book/Chapter10/GlassRefraction" {
 	Properties
 	{
 		_MainTex("Main Tex", 2D) = "white"{}

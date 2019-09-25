@@ -1,4 +1,4 @@
-﻿Shader "Unity Shaders Book/Chapter11-ScrollingBackground"
+﻿Shader "Unity Shaders Book/Chapter11/ScrollingBackground"
 {
 	Properties
 	{

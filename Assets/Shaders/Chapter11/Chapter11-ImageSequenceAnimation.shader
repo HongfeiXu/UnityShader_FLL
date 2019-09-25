@@ -2,7 +2,7 @@
 	序列帧动画
 */
 
-Shader "Unity Shaders Book/Chapter11-ImageSequenceAnimation" {
+Shader "Unity Shaders Book/Chapter11/ImageSequenceAnimation" {
 	Properties {
 		_Color ("Color Tint", Color) = (1,1,1,1)
 		_MainTex ("Image Sequence", 2D) = "white" {}

@@ -7,7 +7,7 @@
 
 */
 
-Shader "Unity Shaders Book/Chapter10-Reflection_v2" {
+Shader "Unity Shaders Book/Chapter10/Reflection_v2" {
 	Properties {
 		_Color("Color Tint", Color) = (1, 1, 1, 1)
 		_ReflectColor("Reflection Color", Color) = (1, 1, 1, 1)

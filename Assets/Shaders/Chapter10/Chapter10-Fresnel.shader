@@ -4,7 +4,7 @@
 	菲涅尔反射，根据视角控制反射程度。
 */
 
-Shader "Unity Shaders Book/Chapter10-Fresnel" {
+Shader "Unity Shaders Book/Chapter10/Fresnel" {
 	Properties{
 		_Color("Color Tint", Color) = (1, 1, 1, 1)
 		_FresnelScale("Fresnel Scale", Range(0, 1)) = 0.5
