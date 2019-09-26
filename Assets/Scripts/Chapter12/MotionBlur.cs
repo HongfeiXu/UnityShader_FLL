@@ -21,7 +21,7 @@ public class MotionBlur : PostEffectsBase
 	[Range(0.0f, 0.9f)]
 	public float blurAmount = 0.5f; // 拖尾效果
 
-	private RenderTexture accumulationTexture;
+	private RenderTexture accumulationTexture;	// 之前图像的叠加结果
 
 	/// <summary>
 	/// 脚本不运行时，立即销毁accumulationTexture
@@ -33,6 +33,31 @@ public class MotionBlur : PostEffectsBase
 
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		
+		if(material != null)
+		{
+			// Create teh accumulationTexture
+			if(accumulationTexture == null || 
+				accumulationTexture.width != source.width || 
+				accumulationTexture.height != source.height)
+			{
+				DestroyImmediate(accumulationTexture);
+				accumulationTexture = new RenderTexture(source.width, source.height, 0);
+				accumulationTexture.hideFlags = HideFlags.HideAndDontSave;
+				Graphics.Blit(source, accumulationTexture);
+			}
+
+			// We are accumulating motion over frames without clear/discard
+			// by design, so silence any performance warnings from Unity
+			accumulationTexture.MarkRestoreExpected();
+
+			material.SetFloat("_BlurAmount", 1.0f - blurAmount);
+
+			Graphics.Blit(source, accumulationTexture, material);
+			Graphics.Blit(accumulationTexture, destination);
+		}
+		else
+		{
+			Graphics.Blit(source, destination);
+		}
 	}
 }
