@@ -370,7 +370,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 ### 第 13 章 使用深度和法线纹理
 
-#### 13.1.3 查看深度和法线纹理
+#### 13.1 查看深度和法线纹理
 
 **线性空间下的深度纹理**
 
@@ -379,6 +379,12 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 **解码后并且被映射到[0, 1]范围内的视角空间下的法线纹理**
 
 ![](Images/ShowNormal.png)
+
+#### 13.2 再谈运动模糊
+
+这里给出了一个在片元着色器中为每个元素计算其在世界空间位置的方法，即**uv、深度->NDC->世界坐标**。
+
+> Ref: http://feepingcreature.github.io/math.html
 
 
 ## Custom
