@@ -27,9 +27,14 @@
 		// 查看线性空间下的深度纹理
 		fixed4 showDepthFrag(v2f i) : SV_Target
 		{
+			// 采样 _CameraDepthTexture
 			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
 			float linearDepth = Linear01Depth(depth);
 			return fixed4(linearDepth, linearDepth, linearDepth, 1.0);
+
+			// 采样 _CameraDepthNormalsTexture
+			//float depth = DecodeFloatRG(tex2D(_CameraDepthNormalsTexture, i.uv).zw);
+			//return fixed4(depth, depth, depth, 1.0);
 		}
 
 		// 查看解码后并且被映射到[0, 1]范围内的视角空间下的法线纹理

@@ -368,6 +368,19 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 ![](Images/OutlineDepthNormalBasedRoberts.png)
 
+### 第 13 章 使用深度和法线纹理
+
+#### 13.1.3 查看深度和法线纹理
+
+**线性空间下的深度纹理**
+
+![](Images/ShowDepth.png)
+
+**解码后并且被映射到[0, 1]范围内的视角空间下的法线纹理**
+
+![](Images/ShowNormal.png)
+
+
 ## Custom
 
 ### 1. Outline

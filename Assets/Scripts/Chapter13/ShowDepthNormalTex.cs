@@ -20,14 +20,33 @@ public class ShowDepthNormalTex : PostEffectsBase
 
 	private void OnEnable()
 	{
+		// 想要获取深度纹理
 		GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;
+		// 想要获取深度+法线纹理
 		GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
 	}
+
+	public bool showDepthOrNormal = true;
+
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (material != null)
 		{
-			material.EnableKeyword("SHOW_NORMAL");
+			// Unset all keywords
+			foreach (var key in material.shaderKeywords)
+			{
+				material.DisableKeyword(key);
+			}
+			// Set keywords
+			if (showDepthOrNormal)
+			{
+				material.EnableKeyword("SHOW_DEPTH");
+			}
+			else
+			{
+				material.EnableKeyword("SHOW_NORMAL");
+			}
+
 			Graphics.Blit(source, destination, material);
 		}
 		else
