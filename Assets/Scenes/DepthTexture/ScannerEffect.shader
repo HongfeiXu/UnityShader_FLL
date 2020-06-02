@@ -42,7 +42,8 @@
 
 			if (linearDepth < _ScanDistance && linearDepth > _ScanDistance - _ScanWidth && linearDepth < 1)
 			{
-				float diff = 1 - (_ScanDistance - linearDepth) / (_ScanWidth);
+				//float diff = (linearDepth - (_ScanDistance - _ScanWidth)) / _ScanWidth;
+				float diff = 1 - (_ScanDistance - linearDepth) / (_ScanWidth);	// 与上式等价，越接近_ScanDistance距离的扫描线颜色越接近_ScanColor
 				_ScanColor *= diff;
 				return col + _ScanColor;
 			}
