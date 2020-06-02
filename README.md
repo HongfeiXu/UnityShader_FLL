@@ -382,7 +382,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 #### 13.2 再谈运动模糊
 
-这里给出了一个在片元着色器中为每个元素计算其在世界空间位置的方法，即**uv、深度->NDC->世界坐标**。
+结合深度纹理进行像素速度的求解。同时给出了一个在片元着色器中为每个元素计算其在世界空间位置的方法，即**uv、深度->NDC->世界坐标**。
 
 > Ref: http://feepingcreature.github.io/math.html
 

@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 855bb4c6efe13294cb1c0bf12fcfe234
-timeCreated: 1569379558
+timeCreated: 1569551925
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - motionBlurShader: {fileID: 4800000, guid: b6e6c04dbe4c31541bba4cfa052c806e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -29,11 +29,6 @@
 		{
 			// 采样 _CameraDepthTexture
 			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
-			// 判断深度是否已被反转
-			// https://github.com/candycat1992/Unity_Shaders_Book#%E5%8D%87%E7%BA%A7unity-55
-			#if defined(UNITY_REVERSED_Z)
-			depth = 1.0 - depth;
-			#endif
 			float linearDepth = Linear01Depth(depth);
 			return fixed4(linearDepth, linearDepth, linearDepth, 1.0);
 

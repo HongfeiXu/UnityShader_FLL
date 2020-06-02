@@ -51,6 +51,7 @@
 			return o;
 		}
 
+		// 返回0表示两点之间存在一条边界
 		half CheckSame(half4 center, half4 sample)
 		{
 			half2 centerNormal = center.xy;

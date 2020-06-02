@@ -1,6 +1,3 @@
-// ref: https://github.com/Microsoft/Imagine_fudge-roll/blob/master/Fudge%20Roll/assets/standard%20assets/effects/imageeffects/shaders/BlurEffectConeTaps.shader
-// ref: https://github.com/Microsoft/Imagine_fudge-roll/blob/master/Fudge%20Roll/assets/standard%20assets/effects/imageeffects/Scripts/Blur.cs
-
 Shader "OutlineBlur/BlurEffectConeTap" {
 	Properties {
 		_MainTex("", 2D) = "white" {}
