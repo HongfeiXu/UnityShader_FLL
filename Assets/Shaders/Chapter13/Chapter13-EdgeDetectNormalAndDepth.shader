@@ -57,17 +57,15 @@
 			half2 centerNormal = center.xy;
 			float centerDepth = DecodeFloatRG(center.zw);
 			half2 sampleNormal = sample.xy;
-			float sampleDepth = DecodeFloatRG(center.zw);
+			float sampleDepth = DecodeFloatRG(sample.zw);
 
 			// difference in normals
-			// do not bother decoding normals - there's no need here
 			half2 diffNormal = abs(centerNormal - sampleNormal) * _Sensitivity.x;
 			int isSameNormal = (diffNormal.x + diffNormal.y) < 0.1;
 			// difference in depth
 			float diffDepth = abs(centerDepth - sampleDepth) * _Sensitivity.y;
 			// scale the required threshold by the distance
 			int isSameDepth = diffDepth < 0.1 * centerDepth;
-
 			// return:
 			// 1 - if normals and depth are similar enough
 			// 0 - otherwise

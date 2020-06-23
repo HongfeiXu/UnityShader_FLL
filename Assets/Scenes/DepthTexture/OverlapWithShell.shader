@@ -1,6 +1,7 @@
 ﻿Shader "Custom/OverlapWithShell"
 {
-	// 加一点描边的效果
+	// 相比Overlap加了一点描边的效果，利用到
+	// 目标面向我们的面的法线和我们观察方向的夹角相对较小，而边缘部分的面的法线和我们的观察方向的夹角显然更大
 
 	Properties
 	{
@@ -51,8 +52,12 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				float NdotV = 1 - dot(i.normal, i.viewDir) * 1.5;
-				fixed4 col = _EdgeColor * NdotV;
+				float3 normal = normalize(i.normal);
+				float3 viewDir = normalize(i.viewDir);
+				// 根据观察方向和目标多边形的法线方向的夹角来判断目标的边缘——毕竟目标面向我们的面的法线和我们观察方向的夹角相对较小，
+				// 而边缘部分的面的法线和我们的观察方向的夹角显然更大——这里的边缘判断用到了观察方向，
+				float rim = 1 - dot(normal, viewDir) * 1.5;
+				fixed4 col = _EdgeColor * rim;
 				return col;
 			}
 			ENDCG
