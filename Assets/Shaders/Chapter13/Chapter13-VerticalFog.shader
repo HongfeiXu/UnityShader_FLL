@@ -76,7 +76,7 @@
 		fixed4 frag(v2f i) : SV_Target
 		{
 			// 采样 _CameraDepthTexture
-			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv_depth);
+			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
 
 			float linearDepth = LinearEyeDepth(depth);
 			float3 worldPos = _WorldSpaceCameraPos + linearDepth * i.interpolatedRay.xyz;

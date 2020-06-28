@@ -10,14 +10,12 @@
 
 		#include "UnityCG.cginc"	
 
-		float _BlurSize;
 		float _ScanWidth;
 		float _ScanDistance;
 		fixed4 _ScanColor;
 
 		sampler2D _CameraDepthTexture;
 		sampler2D _MainTex;
-		half4 _MainTex_TexelSize;	// 用来进行平台差异化处理
 
 		struct v2f
 		{
@@ -40,10 +38,11 @@
 			float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
 			float linearDepth = Linear01Depth(depth);
 
+			// 比较当前扫描到的深度与此像素（片元）的深度
 			if (linearDepth < _ScanDistance && linearDepth > _ScanDistance - _ScanWidth && linearDepth < 1)
 			{
-				//float diff = (linearDepth - (_ScanDistance - _ScanWidth)) / _ScanWidth;
-				float diff = 1 - (_ScanDistance - linearDepth) / (_ScanWidth);	// 与上式等价，越接近_ScanDistance距离的扫描线颜色越接近_ScanColor
+				// 颜色过渡，越接近_ScanDistance距离的扫描线颜色越接近_ScanColor
+				float diff = 1 - (_ScanDistance - linearDepth) / _ScanWidth;	
 				_ScanColor *= diff;
 				return col + _ScanColor;
 			}

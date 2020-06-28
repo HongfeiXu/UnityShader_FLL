@@ -88,9 +88,13 @@
 				float3 viewDir = normalize(i.viewDir);
 
 				// 相交效果
-				float2 wcoord = i.screenPos.xy / i.screenPos.w;	 // 屏幕坐标访问深度纹理
-				float screenZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, wcoord));	// 此前绘制的深度值
-				float diff = screenZ - i.screenPos.z;			// 当前物体与之前绘制结果的深度差异，1-diff就得到相交程度
+				// 由于此时不是Post Process，因此需要利用投影纹理采样来访问深度图
+				float screenZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos)));	// 与下面两个语句效果相同
+
+				//float2 wcoord = i.screenPos.xy / i.screenPos.w;	 // 屏幕坐标访问深度纹理
+				//float screenZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, wcoord));	// 此前绘制的深度值
+
+				float diff = abs(screenZ - i.screenPos.z);			// 当前物体与之前绘制结果的深度差异，1-diff就得到相交程度
 				float intersect = (1 - diff) * _IntersectPower;
 
 				// 边缘效果
