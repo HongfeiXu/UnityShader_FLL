@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_BlurSize("Blur Size", Float) = 1.0
+		_FocusBox("Focus Box", Vector) = (0,0,0,0)
 	}
 	SubShader
 	{
@@ -14,6 +15,7 @@
 		sampler2D _MainTex;
 		half4 _MainTex_TexelSize;	// xxx_TexelSize 是 xxx 纹理对应的每个纹素的大小
 		float _BlurSize;
+		float4 _FocusBox;
 
 		struct v2f
 		{
@@ -64,6 +66,9 @@
 				sum += tex2D(_MainTex, i.uv[it * 2 - 1]).rgb * weight[it];
 				sum += tex2D(_MainTex, i.uv[it * 2]).rgb * weight[it];
 			}
+
+			if (i.uv[0].x > _FocusBox.x && i.uv[0].x < _FocusBox.z && i.uv[0].y > _FocusBox.y && i.uv[0].y < _FocusBox.w)
+				return fixed4(tex2D(_MainTex, i.uv[0]).rgb, 1);
 
 			return fixed4(sum, 1.0);
 		}

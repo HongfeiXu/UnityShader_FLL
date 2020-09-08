@@ -67,7 +67,7 @@ public class GaussianBlur : PostEffectsBase
 	/// 3rd edition: use iterations for larger blur
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		if(material != null)
+		if (material != null)
 		{
 			int rtW = source.width / downSample;
 			int rtH = source.height / downSample;
@@ -76,9 +76,10 @@ public class GaussianBlur : PostEffectsBase
 
 			Graphics.Blit(source, buffer0);
 
-			for(int i = 0; i < iterations; i++)
+			for (int i = 0; i < iterations; i++)
 			{
 				material.SetFloat("_BlurSize", 1.0f + i * blurSpread);
+				material.SetVector("_FocusBox", box);
 
 				RenderTexture buffer1 = RenderTexture.GetTemporary(rtW, rtH, 0);
 
@@ -103,6 +104,24 @@ public class GaussianBlur : PostEffectsBase
 		else
 		{
 			Graphics.Blit(source, destination);
+		}
+	}
+
+	Vector3 clickPosScreen = Vector3.zero;
+	public Vector4 box = Vector4.zero;  // 不模糊的区域
+	private float halfWidth = 0.1f;		// 0.5*区域宽度
+
+	private void Update()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			Debug.Log("Mouse position pixel = " + Input.mousePosition);
+			clickPosScreen = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+			box.x = clickPosScreen.x - halfWidth;
+			box.y = clickPosScreen.y - halfWidth;
+			box.z = clickPosScreen.x + halfWidth;
+			box.w = clickPosScreen.y + halfWidth;
+			Debug.Log("Mouse position screen = " + clickPosScreen);
 		}
 	}
 }

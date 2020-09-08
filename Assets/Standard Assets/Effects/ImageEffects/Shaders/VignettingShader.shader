@@ -44,7 +44,7 @@ Shader "Hidden/Vignetting" {
 		
 		coords = (coords - 0.5) * 2.0;
 		half coordDot = dot (coords,coords);
-		half4 color = tex2D (_MainTex, UnityStereoScreenSpaceUVAdjust(uv, _MainTex_ST));
+		half4 color = tex2D (_MainTex, uv);
 
 		float mask = 1.0 - coordDot * _Intensity; 
 		
