@@ -32,7 +32,6 @@ Shader "Glitch/AnalogGlitch2D"
         // Scan line jitter
         float jitter = nrand(v, _Time.x) * 2 - 1;
         jitter *= step(_ScanLineJitter.y, abs(jitter)) * _ScanLineJitter.x;
-
         // Vertical jump
         float jump = lerp(v, frac(v + _VerticalJump.y), _VerticalJump.x);
 

@@ -28,7 +28,7 @@ Shader "Unity Shaders Book/Chapter11/Billboard"
 			{
 				float4 vertex : POSITION;
 				float2 texcoord : TEXCOORD0;
-		};
+			};
 
 			struct v2f
 			{
