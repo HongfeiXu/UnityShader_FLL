@@ -394,7 +394,13 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/Dissolve.png)
 
 第一个pass利用噪声图去clip、去融合烧焦颜色与正常光照结果，用阴影三剑客+`UNITY_LIGHT_ATTENUATION`做阴影和光照；
+
 第二个pass去投射阴影。`Chapter11/VertexAnimationWithShadow`中也用了类似方法去投射阴影。
+
+用到cg函数：
+
+- [smoothstep](https://developer.download.nvidia.cn/cg/smoothstep.html)
+- [step](https://developer.download.nvidia.cn/cg/step.html)
 
 #### 15.2 
 
@@ -424,3 +430,7 @@ TODO
 5. 用 compositeMaterial 进行 原图 + 线框操作
 
 ![](Images/OutlineBlur.png)
+
+### 3. OutlineAndJitterFor2D
+
+TODO

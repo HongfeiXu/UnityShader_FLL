@@ -124,7 +124,6 @@
 				float4 vertex : POSITION;
 				float3 normal : NORMAL;
 				float4 texcoord : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
