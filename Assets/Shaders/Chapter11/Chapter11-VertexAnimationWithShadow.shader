@@ -92,7 +92,7 @@ Shader "Unity Shaders Book/Chapter11/VertexAnimationWithShadow" {
 			float _Speed;
 			
 			struct v2f { 
-			    V2F_SHADOW_CASTER;
+				V2F_SHADOW_CASTER;
 			};
 			
 			v2f vert(appdata_base v) {
@@ -109,7 +109,7 @@ Shader "Unity Shaders Book/Chapter11/VertexAnimationWithShadow" {
 			}
 			
 			fixed4 frag(v2f i) : SV_Target {
-			    SHADOW_CASTER_FRAGMENT(i)
+				SHADOW_CASTER_FRAGMENT(i)
 			}
 			ENDCG
 		}

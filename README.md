@@ -204,7 +204,8 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 ![](Images/forward_rendering.png)
 
-<p align="center"> 前向渲染的两种Pass</p> 
+<p align="center"> 前向渲染的两种Pass</p>
+
 #### 9.2 Unity 的光源类型
 
 平行光，点光源，聚光灯
@@ -386,6 +387,18 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 > Ref: http://feepingcreature.github.io/math.html
 
+### 第 15 章 使用噪声
+
+#### 15.1 消融效果
+
+![](Images/Dissolve.png)
+
+第一个pass利用噪声图去clip、去融合烧焦颜色与正常光照结果，用阴影三剑客+`UNITY_LIGHT_ATTENUATION`做阴影和光照；
+第二个pass去投射阴影。`Chapter11/VertexAnimationWithShadow`中也用了类似方法去投射阴影。
+
+#### 15.2 
+
+TODO
 
 ## Custom
 
