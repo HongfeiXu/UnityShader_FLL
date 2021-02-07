@@ -1,25 +1,15 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-/*
-
-	渲染纹理之玻璃效果，
-	
-	1. 使用 GrabPass 来获取玻璃后面的屏幕图像，并使用切线空间下的法线对屏幕纹理坐标进行偏移，最后对屏幕图像采样来模拟近似的光照效果
-	2. 使用 Cubemap 来模拟玻璃的反射
-	3. 混合反射与折射
-
-*/
-
-Shader "Unity Shaders Book/Chapter10/GlassRefraction" {
+﻿Shader "Unity Shaders Book/Chapter15/Chapter15-WaterWave"
+{
 	Properties
 	{
-		_MainTex("Main Tex", 2D) = "white"{}
-		_BumpMap("Normal Map", 2D) = "bump" {}
-		_CubeMap("Environment Cubemap", Cube) = "_Skybox" {}
+		_Color("Main Color", Color) = (0, 0.15, 0.115, 1)		// 水面颜色
+		_MainTex ("Base (RGB)", 2D) = "white" {}				// 水面波纹材质纹理
+		_WaveMap("Wave Map", 2D) = "bump" {}					// 由噪声生成的法线纹理
+		_CubeMap("Environment Cubemap", Cube) = "_Skybox" {}	// 用于模拟反射的立方体纹理
+		_WaveXSpeed("Wave Horizontal Speed", Range(-0.1, 0.1)) = 0.01
+		_WaveYSpeed("Wave Vertical Speed", Range(-0.1, 0.1)) = 0.01
 		_Distortion("Distortion", Range(0, 100)) = 10
-		_RefractAmount("Refract Amount", Range(0.0, 1.0)) = 1.0
 	}
-
 	SubShader
 	{
 		// We must be transparent, so other objects are drawn before this one
@@ -28,27 +18,26 @@ Shader "Unity Shaders Book/Chapter10/GlassRefraction" {
 		// This pass grabs the screen behind the object into a texture.
 		// We can access the result in the next pass as _RefractionTex
 		GrabPass {"_RefractionTex"}
-		
+
 		Pass
 		{
 			CGPROGRAM
-
 			#pragma vertex vert
 			#pragma fragment frag
-
+			
 			#include "UnityCG.cginc"
-			#include "Lighting.cginc"
 
+			fixed4 _Color;
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
-			sampler2D _BumpMap;
-			float4 _BumpMap_ST;
+			sampler2D _WaveMap;
+			float4 _WaveMap_ST;
 			samplerCUBE _Cubemap;
+			fixed _WaveXSpeed;
+			fixed _WaveYSpeed;
 			float _Distortion;
-			fixed _RefractAmount;
 			sampler2D _RefractionTex;
 			float4 _RefractionTex_TexelSize;
-			
 
 			struct a2v {
 				float4 vertex : POSITION;
@@ -57,7 +46,8 @@ Shader "Unity Shaders Book/Chapter10/GlassRefraction" {
 				float4 texcoord : TEXCOORD0;
 			};
 
-			struct v2f {
+			struct v2f
+			{
 				float4 pos : SV_POSITION;
 				float4 scrPos : TEXCOORD0;
 				float4 uv : TEXCOORD1;
@@ -75,7 +65,7 @@ Shader "Unity Shaders Book/Chapter10/GlassRefraction" {
 
 				// 使用 o.uv 存储两个纹理坐标
 				o.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
+				o.uv.zw = v.texcoord.xy * _WaveMap_ST.xy + _WaveMap_ST.zw;
 
 				float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				float3 worldNormal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));
@@ -91,48 +81,33 @@ Shader "Unity Shaders Book/Chapter10/GlassRefraction" {
 				return o;
 			}
 
-			float4 frag(v2f i) : SV_Target
+			fixed4 frag (v2f i) : SV_Target
 			{
 				float3 worldPos = float3(i.TtoW0.w, i.TtoW1.w, i.TtoW2.w);
 				fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
-
+				float2 speed = _Time.y * float2(_WaveXSpeed, _WaveYSpeed);
 				// Get the normal in tangent space
-				fixed3 bump = UnpackNormal(tex2D(_BumpMap, i.uv.zw));
-
-				// Compute the offset in tangent，其中对屏幕图像的采样坐标进行偏移略 Trick，详细见 issue 64
-
-				// 方式一，偏移范围是在[offset/Far, offset/Near]
-				//float2 offset = bump.xy * _Distortion * _RefractionTex_TexelSize.xy;
-				//i.scrPos.xy = offset + i.scrPos.xy;				
-				//fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy / i.scrPos.w).rgb;
-
-				// 方式二，偏移范围是在[-offset, offset]
+				fixed3 bump1 = UnpackNormal(tex2D(_WaveMap, i.uv.zw + speed)).rgb;
+				fixed3 bump2 = UnpackNormal(tex2D(_WaveMap, i.uv.zw - speed)).rgb;
+				fixed3 bump = normalize(bump1 + bump2);	// 为了模拟两层交叉的水面波动的效果
+				// Compute the offset in tangent space
 				float2 offset = bump.xy * _Distortion * _RefractionTex_TexelSize.xy;
-				// 
-				i.scrPos.xy = offset * i.scrPos.z + i.scrPos.xy;	
-				// 对 scrPos 透视除法得到真正的视口坐标，再使用该坐标对抓取的屏幕图像 _RefractionTex 进行采样，得到模拟的折射颜色
+				// i.scrPos.xy = offset * i.scrPos.z + i.scrPos.xy;	// 效果1，offset * z 是为了模拟深度越大，折射程度越大的效果
+				i.scrPos.xy = offset + i.scrPos.xy;	// 效果2，不模拟上述效果
+
 				fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy / i.scrPos.w).rgb;
-
-				// 方式三
-				// 这样offset就不会跟物体距离摄像机的远近有任何关系，永远都是offset的值，这也不能说这样做有什么问题。
-				//float2 offset = bump.xy * _Distortion * _RefractionTex_TexelSize.xy;
-				//fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy / i.scrPos.w + offset).rgb;
-
 				// Convert the normal to world space
 				bump = normalize(half3(dot(i.TtoW0.xyz, bump), dot(i.TtoW1.xyz, bump), dot(i.TtoW2.xyz, bump)));
 				fixed3 reflDir = reflect(-worldViewDir, bump);
 				fixed3 texColor = tex2D(_MainTex, i.uv.xy).rgb;
-				// 用反射方向对 Cubemap 进行采样，并把结果与主纹理颜色相乘得到反射颜色
-				fixed3 reflCol = texCUBE(_Cubemap, reflDir).rgb * texColor;
+				fixed3 reflCol = texCUBE(_Cubemap, reflDir).rgb * texColor * _Color.rgb;
 
-				// 混合折射颜色与反射颜色
-				fixed3 finalCol = lerp(refrCol, reflCol, saturate(1 - _RefractAmount));
-
-				return fixed4(finalCol, 1.0);
+				float fresnel = pow(1-saturate(dot(worldViewDir, bump)), 4);	// 菲涅尔系数，越小，反射越弱
+				fixed3 finalCol = lerp(refrCol, reflCol, fresnel);
+				return fixed4(finalCol, 1);
 			}
 
 			ENDCG
 		}
-
 	}
 }

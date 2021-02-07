@@ -402,9 +402,12 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 - [smoothstep](https://developer.download.nvidia.cn/cg/smoothstep.html)
 - [step](https://developer.download.nvidia.cn/cg/step.html)
 
-#### 15.2 
+#### 15.2 水波效果
 
-TODO
+![](Images/Wave.png)
+
+1. 参考`Unity Shaders Book/Chapter10/GlassRefraction`，其中的法线纹理用这里噪声贴图替代，且随时间变化
+2. 用Fresnel来决定反射和折射的混合系数，使之更逼真
 
 ## Custom
 
