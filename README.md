@@ -222,7 +222,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 <p align="center"> 使用 1 个平行光 + 4 个点光源照亮一个物体</p> 
 
-> Chapter9-ForwardRendering.shader 不支持逐顶点和SH光源
+> Chapter9-ForwardRendering.shader 不支持逐顶点和SH光源<br>
 > Chapter9-ForwardRendering_v2.shader 支持逐顶点和SH光源
 
 #### 9.3 Unity 的光照衰减
@@ -235,7 +235,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 <p align="center">开启 Cast Shadows 和 Receive Shadows，从而让正方体可以投射和接受阴影</p> 
 
-> Chapter9-ForwardRendering.shader
+> Chapter9-ForwardRendering.shader<br>
 > 注：两个 Plane 为默认材质。并且右侧材质的 Cast Shadows 设置为 Two Sided 来允许对其背面也计算阴影。
 
 **不透明物体的阴影之让物体接收阴影**（阴影三剑客：SHADOW_COORDS，TRANSFER_SHADOW，SHADOW_ATTENUATION）
@@ -256,7 +256,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 ![](Images/AlphaTestShadow.png)
 
-> Chapter9-AlphaTestWithShadow.shader
+> Chapter9-AlphaTestWithShadow.shader<br>
 > 需要提供一个具有透明度测试功能的 ShadowCaster Pass，这里是将 Fallback 设置为 `Transparent/Cutout/VertexLit`。
 
 **透明度物体的阴影之透明度混合**
@@ -264,25 +264,26 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/AlphaBlendNoShadow.png)
 
 <p align="center">把使用了透明度混合的 Unity Shader 的 Fallback 设置为内置的 Transparent/VertexLit。半透明物体不会向下方投射阴影，也不会接收来自右侧平面的阴影</p>
-> Chapter9-AlphaBlendWithShadow.shader
+
+> Chapter9-AlphaBlendWithShadow.shader<br>
 > 问：为什么不会接收来自右侧平面的阴影？明明在代码中使用了阴影三剑客。。。
 
 ![](Images/AlphaBlendShadow.png)
 
 <p align="center">把 Fallback 设为 VertexLit 来强制为半透明物体生成阴影</p>
 
-> Chapter9-AlphaBlendWithShadow.shader
+> Chapter9-AlphaBlendWithShadow.shader<br>
 > **但与书上不同的是，右侧平面的阴影并没有投射到半透明的立方体上。为什么？**
 
 #### 9.5 本书使用的标准 Unity Shader
 
-> BumpedDiffuse.shader
+> BumpedDiffuse.shader<br>
 > BumpedSpecular.shader
 
 
 
-> 自己添加的透明版本，不接收阴影，也不生成阴影
-> TransparentBumpedDiffuse.shader
+> 自己添加的透明版本，不接收阴影，也不生成阴影<br>
+> TransparentBumpedDiffuse.shader<br>
 > TransparentBumpedSpecular.shader
 
 
