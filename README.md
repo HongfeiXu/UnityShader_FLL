@@ -387,6 +387,18 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 > Ref: http://feepingcreature.github.io/math.html
 
+#### 13.3 全局雾效
+
+基于屏幕高度的均匀雾效。
+
+![](Images/FogWithDepthTexture.png)
+
+1. 利用深度纹理来重建每个像素在世界空间下的位置
+2. 使用一个基于高度的公式来计算雾效的混合系数
+3. 使用该系数来混合雾和原屏幕颜色
+
+注：15.3节拓展此效果，用噪声图实现了雾不断飘动，且不均匀的效果。
+
 ### 第 15 章 使用噪声
 
 #### 15.1 消融效果
@@ -408,6 +420,12 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 1. 参考`Unity Shaders Book/Chapter10/GlassRefraction`，其中的法线纹理用这里噪声贴图替代，且随时间变化
 2. 用Fresnel来决定反射和折射的混合系数，使之更逼真
+
+#### 15.3 再谈全局雾效
+
+13.3节全局雾效+噪声图实现非均匀的飘动的雾效。
+
+![](Images/FogWithNoise.png)
 
 ## Custom
 
