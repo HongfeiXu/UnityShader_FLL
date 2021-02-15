@@ -62,15 +62,19 @@
 ![](Images/WrapMode.png)
 
 <p align="center">Wrap Mode决定了当纹理坐标超过[0, 1]范围后将会如何被平铺</p> 
+
 ![](Images/WrapMode_2.png)
 
 <p align="center">偏移属性决定了纹理坐标的偏移量</p> 
+
 ![](Images/FilterMode.png)
 
 <p align="center">在放大纹理是，分别使用3种Filter Mode得到的结果</p> 
+
 ![](Images/FilterMode_2.png)
 
 <p align="center">FilterMode+mipmapping</p> 
+
 > Chapter7-TextureProperties.shader <br>
 > Scene_7_1_2_a.unity <br>
 > Scene_7_1_2_b.unity <br>
@@ -118,8 +122,6 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/MaskTexture.png)
 
 ![](Images/MaskTextureSettings.png)
-
-
 
 **小Tips**：主纹理、法线纹理和遮罩纹理共同使用一个纹理属性变量 `_Main_Tex_ST`，这样，在材质面板中修改主纹理的平铺和偏移系数会同时影响3个纹理的采样（起到同步的作用），并且可以节省存储的纹理目标数。
 
@@ -213,15 +215,14 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/forward_rendering_ex1.png)
 
 <p align="center"> 使用一个平行光和两个点光源共同照亮物体。右图显示了胶囊体、平行光和点光源在场景中的相对位置</p> 
+
 > Chapter9-ForwardRendering.shader
-
-
 
 ![](Images/forward_rendering_ex2.png)
 
 <p align="center"> 使用 1 个平行光 + 4 个点光源照亮一个物体</p> 
+
 > Chapter9-ForwardRendering.shader 不支持逐顶点和SH光源
->
 > Chapter9-ForwardRendering_v2.shader 支持逐顶点和SH光源
 
 #### 9.3 Unity 的光照衰减
@@ -233,8 +234,8 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/Shadow_ex1.png)
 
 <p align="center">开启 Cast Shadows 和 Receive Shadows，从而让正方体可以投射和接受阴影</p> 
+
 > Chapter9-ForwardRendering.shader
->
 > 注：两个 Plane 为默认材质。并且右侧材质的 Cast Shadows 设置为 Two Sided 来允许对其背面也计算阴影。
 
 **不透明物体的阴影之让物体接收阴影**（阴影三剑客：SHADOW_COORDS，TRANSFER_SHADOW，SHADOW_ATTENUATION）
@@ -242,6 +243,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/Shadow_ex2.png)
 
 <p align="center">正方体可以接收来自右侧平面的阴影</p> 
+
 > Chapter9-Shadow.shader
 
 **统一管理光照衰减和阴影**（使用内置的 `UNITY_LIGHT_ATTENUATION`来得到光照衰减因子与阴影值的乘积）
@@ -255,7 +257,6 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/AlphaTestShadow.png)
 
 > Chapter9-AlphaTestWithShadow.shader
->
 > 需要提供一个具有透明度测试功能的 ShadowCaster Pass，这里是将 Fallback 设置为 `Transparent/Cutout/VertexLit`。
 
 **透明度物体的阴影之透明度混合**
@@ -264,30 +265,24 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 <p align="center">把使用了透明度混合的 Unity Shader 的 Fallback 设置为内置的 Transparent/VertexLit。半透明物体不会向下方投射阴影，也不会接收来自右侧平面的阴影</p>
 > Chapter9-AlphaBlendWithShadow.shader
->
 > 问：为什么不会接收来自右侧平面的阴影？明明在代码中使用了阴影三剑客。。。
-
-
 
 ![](Images/AlphaBlendShadow.png)
 
 <p align="center">把 Fallback 设为 VertexLit 来强制为半透明物体生成阴影</p>
+
 > Chapter9-AlphaBlendWithShadow.shader
->
 > **但与书上不同的是，右侧平面的阴影并没有投射到半透明的立方体上。为什么？**
 
 #### 9.5 本书使用的标准 Unity Shader
 
 > BumpedDiffuse.shader
->
 > BumpedSpecular.shader
 
 
 
 > 自己添加的透明版本，不接收阴影，也不生成阴影
->
 > TransparentBumpedDiffuse.shader
->
 > TransparentBumpedSpecular.shader
 
 
@@ -301,22 +296,27 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 ![](Images/Skybox_2.png)
 
 <p align="center">天空盒子材质</p>
+
 ![](Images/Skybox.png)
 
 <p align="center">使用了天空盒子的场景</p>
+
 **创建用于环境映射的立方体纹理**
 
 ![](Images/Cubemap.png)
 
 <p align="center">使用脚本创建立方体纹理</p>
+
 ![](Images/Cubemap_2.png)
 
 <p align="center">使用脚本渲染立方体纹理</p>
+
 **反射**
 
 ![](Images/Reflect.png)
 
 <p align="center">使用了反射效果的 Teapot 模型</p>
+
 **折射**
 
 ![](Images/Refract.png)
