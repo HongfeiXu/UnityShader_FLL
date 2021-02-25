@@ -1,7 +1,7 @@
 // 模拟故障效果
 // 参考KinoGlitch中的AnalogGlitch.shader
 // Refs: https://lab.uwa4d.com/lab/5b5d1c86d7f10a201feaa37f
-Shader "Glitch/AnalogGlitch2D"
+Shader "Custom/Glitch/AnalogGlitch2D"
 {
     Properties
     {
