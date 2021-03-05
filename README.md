@@ -488,11 +488,11 @@ Unity2019.4   2955FPS    CPU main 0.3ms  render thread 0.2ms
 
 **PolygonsBeta.shader**
 
-<img src="images/StencilBufferPolygons.png" style="zoom: 50%;" />
+<img src="Images/StencilBufferPolygons.png" style="zoom: 50%;" />
 
 **HolePrepare.shader\Hole.shader\Red.shader\Blue.shader\Green.shader**
 
-<img src="images/StencilBufferDocExample.png" style="zoom: 67%;" />
+<img src="Images/StencilBufferDocExample.png" style="zoom: 67%;" />
 
 
 
@@ -500,7 +500,7 @@ Unity2019.4   2955FPS    CPU main 0.3ms  render thread 0.2ms
 
 用StencilBuffer实现的Outline效果，与上面的那个一致哈。
 
-<img src="images/OutlineUseStencilBuffer.png" style="zoom:50%;" />
+<img src="Images/OutlineUseStencilBuffer.png" style="zoom:50%;" />
 
 StencilBuffer还有其他很多用处，比如限制反射区域、进行阴影渲染等等。
 
