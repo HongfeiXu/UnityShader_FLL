@@ -1,4 +1,4 @@
-﻿Shader "Red" {
+﻿Shader "Custom/Red" {
     SubShader {
         Tags { "RenderType"="Opaque" "Queue"="Geometry"}
         Pass {

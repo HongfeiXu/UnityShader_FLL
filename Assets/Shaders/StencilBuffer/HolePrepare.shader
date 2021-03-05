@@ -1,4 +1,4 @@
-﻿Shader "HolePrepare" {
+﻿Shader "Custom/HolePrepare" {
 	Properties
 	{
 		_Diffuse("Diffuse", Color) = (1.0, 1.0, 1.0, 1.0)
