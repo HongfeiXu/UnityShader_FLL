@@ -118,5 +118,7 @@ Shader "Custom/PolygonsBeta"
 			}
 			ENDCG
 		}
+
+		//UsePass "Custom/Wireframe/WIREFRAME"
 	}
 }

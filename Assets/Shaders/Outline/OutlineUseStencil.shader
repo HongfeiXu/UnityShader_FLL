@@ -1,6 +1,6 @@
 ﻿// https://blog.csdn.net/liu_if_else/article/details/86316361
 // 利用Stencil Buffer，实现描边效果
-Shader "Custom/GeometryShaderV2" {
+Shader "Custom/GeometryEdgeUseStencil" {
 	Properties{
 		_Color("Color",Color) = (1,1,1,1)
 		_EdgeColor("EdgeColor",Color) = (1,1,1,1)

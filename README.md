@@ -294,21 +294,21 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 **天空盒子**
 
-![](Images/Skybox_2.png)
+<img src="Images/Skybox_2.png" style="zoom:50%;" />
 
 <p align="center">天空盒子材质</p>
 
-![](Images/Skybox.png)
+<img src="Images/Skybox.png" style="zoom:50%;" />
 
 <p align="center">使用了天空盒子的场景</p>
 
 **创建用于环境映射的立方体纹理**
 
-![](Images/Cubemap.png)
+<img src="Images/Cubemap.png" style="zoom:50%;" />
 
 <p align="center">使用脚本创建立方体纹理</p>
 
-![](Images/Cubemap_2.png)
+<img src="Images/Cubemap_2.png" style="zoom:50%;" />
 
 <p align="center">使用脚本渲染立方体纹理</p>
 
@@ -392,7 +392,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 基于屏幕高度的均匀雾效。
 
-![](Images/FogWithDepthTexture.png)
+<img src="Images/FogWithDepthTexture.png" style="zoom:80%;" />
 
 1. 利用深度纹理来重建每个像素在世界空间下的位置
 2. 使用一个基于高度的公式来计算雾效的混合系数
@@ -426,7 +426,7 @@ fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
 13.3节全局雾效+噪声图实现非均匀的飘动的雾效。
 
-![](Images/FogWithNoise.png)
+<img src="Images/FogWithNoise.png" style="zoom:80%;" />
 
 ## Custom
 
@@ -476,7 +476,32 @@ TODO
 Unity5.4      82FPS      CPU main 11.9ms render thread 0.3ms
 Unity2019.4   2955FPS    CPU main 0.3ms  render thread 0.2ms
 
-![](Images/CountlessGrass.png)
+<img src="Images/CountlessGrass.png" style="zoom:80%;" />
 
+### 5. StencilBuffer
+
+> https://docs.unity3d.com/Manual/SL-Stencil.html
+>
+> https://blog.csdn.net/liu_if_else/article/details/86316361
+
+学了下StencilBuffer的使用，实现了下面一些简单效果
+
+**PolygonsBeta.shader**
+
+<img src="images/StencilBufferPolygons.png" style="zoom: 50%;" />
+
+**HolePrepare.shader\Hole.shader\Red.shader\Blue.shader\Green.shader**
+
+<img src="images/StencilBufferDocExample.png" style="zoom: 67%;" />
+
+
+
+**OutlineUseStencil.shader**
+
+用StencilBuffer实现的Outline效果，与上面的那个一致哈。
+
+<img src="images/OutlineUseStencilBuffer.png" style="zoom:50%;" />
+
+StencilBuffer还有其他很多用处，比如限制反射区域、进行阴影渲染等等。
 
 
